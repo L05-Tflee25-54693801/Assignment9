@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+    <script>
+        var sound
+        var x = []
+        var y = []
+        direction=[]
+
+        function preload() {
+            sound = loadSound("baba.wav")
+        }
+
+        function setup() {
+            createCanvas(600, 600);
+            background(250,0,0,10);
+            sound.loop();
+            frameRate(30);
+            for(i=0;i<100;i++){
+              direction[i]=10;
+            }
+
+
+
+
+        }
+
+        function draw() {
+            background(0);
+            textAlign(CENTER);
+            text("Press the mouse when you hear the sound", 300, 30);
+            stroke(255)
+            noFill();
+            noStroke();
+            rectMode(CENTER);
+            rect(300,27,250,25)
+            fill(250);
+            for (var i = 0; i < y.length; i++)
+                rect(x[i], y[i], 40, 40);
+            move();
+
+        }
+
+        function move() {
+            for (var i = 0; i < y.length; i++){
+                y[i] = y[i] + direction[i]
+            if (y[i] >= height) {
+                y[i] = height-20;
+                direction[i]=0;
+
+            }
+
+        }
+}
+        function mousePressed() {
+            x[x.length] = mouseX;
+            y[y.length] = mouseY;
+        }
+    </script>
+</head>
+
+</html>
